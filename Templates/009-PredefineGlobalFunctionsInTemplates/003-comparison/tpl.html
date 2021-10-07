@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    ***Example 1***¨
+    {{if gt .Score1 .Score2}}   <!-- gt means Greater Than-->
+    SCORE 1 > SCORE 2
+    {{end}}
+
+    ***Example 2***
+    {{if lt .Score1 .Score2}}   <!-- lt Means Less Than-->
+    SCORE 1 < SCORE 2
+    {{end}}
+
+    ***Example 3***
+    {{if eq .Score1 .Score2}}   <!-- eq Means Equal-->
+    SCORE 1 = SCORE 2
+    {{end}}
+
+    ***Example 4***
+    {{if lt .Score1 .Score2}}
+    LAST ONE: SCORE 1 < 10
+    {{end}}
+</body>
+</html>
