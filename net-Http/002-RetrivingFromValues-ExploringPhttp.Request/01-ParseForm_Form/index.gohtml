@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+        {{if .}}
+        <main>
+            <p><strong>variable names</strong> (Identifiers) and <em>values</em>:</p>
+            {{ range $key, $value := .}}
+            <p><strong>{{$key}}</strong></p>
+            <ul>{{range $value}}<li><em>{{.}}</em></li>{{end}}</ul>
+            {{end}}
+    </main>
+    {{end}}
+
+    <!-- The Method GET Will Send The Data Throught The URL -->
+    <!-- The Method POST Will Send The Data Throught The Body-->
+    <form action="/?fname=james" method="POST"> 
+        <input type="text" name="fname" placeholder="first name" autofocus autocomplete="off">
+        <input type="submit" name="submit-btn" value="onda button">
+    </form>
+</body>
+</html>

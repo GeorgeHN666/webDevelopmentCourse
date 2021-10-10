@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <header>
+        {{if .Method}} <p>The Request Method: {{.Method}}</p>{{end}}
+        {{if .Host}} <p>The Request Host: {{.Host}}</p>{{end}}
+        {{if .ContentLenght}} <p>The Request contentlenght: {{.ContentLenght}}</p>{{end}}
+
+        {{if .URL}} <p>The Request URL: </p>
+            <ul>
+                <li>Scheme: {{.URL.Scheme}}</li>
+                <li>Opaque: {{.URL.Opaque}}</li>
+                <li>Host: {{.URL.Host}}</li>
+                <li>Path: {{.URL.Path}}</li>
+                <li>RawPath: {{.URL.RawPath}}</li>
+                <li>ForceQuery: {{.URL.ForceQuery}}</li>
+                <li>RawQuery: {{.URL.RawQuery}}</li>
+                <li>Fragment: {{.URL.Fragment}}</li>
+            </ul>
+        {{end}}
+
+        {{if .Header}}
+            {{range $k,$v := .Header}}
+                <p>{{$k}}</p>
+                <ul>
+                    {{range $v}}
+                        <li>{{.}}</li>
+                    {{end}}
+                </ul>
+            {{end}}
+        {{end}}
+    </header>
+
+    <form action="/"  method="POST">
+        <input type="text" name="fname" placeholder="First Name" autofocus autocomplete="off">
+        <input type="submit" name="submit-btn" value="onda button">
+    </form>
+</body>
+</html>
