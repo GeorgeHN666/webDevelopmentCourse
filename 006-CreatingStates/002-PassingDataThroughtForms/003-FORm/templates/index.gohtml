@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST</title>
+</head>
+<body>
+    <form method="post">
+        <label for="FirstName">First Name</label>
+        <input type="text" id="firstname" name="first">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="last">
+        <label for="sub">Subscribe</label>
+        <input type="checkbox" name="subscribe" id="sub">
+        <br>
+        <input type="submit" placeholder="submit">
+    </form>
+
+    <br>
+
+    <h1>First Name: {{.FirstName}}</h1>
+    <h1>First Name: {{.LastName}}</h1>
+    <h1>First Name: {{.Subscribe}}</h1>
+
+    
+</body>
+</html>
