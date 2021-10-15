@@ -31,35 +31,35 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 
-func index(w http.ResponseWriter, req *http.Request) {
-	u := getUser(req)
-	tpl.ExecuteTemplate(w, "index.gohtml", u)
+func index(w http.ResponseWriter, r *http.Request) {
+	u := getUser(r)
+	tpl.ExecuteTemplate(w, "index.html", u)
 }
 
-func bar(w http.ResponseWriter, req *http.Request) {
-	u := getUser(req)
-	if !alreadyLoggedIn(req) {
-		http.Redirect(w, req, "/", http.StatusSeeOther)
+func bar(w http.ResponseWriter, r *http.Request) {
+	u := getUser(r)
+	if !alreadyLoggedIn(r) {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
-	tpl.ExecuteTemplate(w, "bar.gohtml", u)
+	tpl.ExecuteTemplate(w, "bar.html", u)
 }
 
-func signup(w http.ResponseWriter, req *http.Request) {
-	if alreadyLoggedIn(req) {
-		http.Redirect(w, req, "/", http.StatusSeeOther)
+func signup(w http.ResponseWriter, r *http.Request) {
+	if alreadyLoggedIn(r) {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
 
 	// process form submission
-	if req.Method == http.MethodPost {
+	if r.Method == http.MethodPost {
 
 		// get form values
-		e := req.FormValue("email")
-		un := req.FormValue("username")
-		p := req.FormValue("password")
-		f := req.FormValue("firstname")
-		l := req.FormValue("lastname")
+		e := r.FormValue("email")
+		un := r.FormValue("username")
+		p := r.FormValue("password")
+		f := r.FormValue("firstname")
+		l := r.FormValue("lastname")
 
 		// username taken?
 		if _, ok := dbUsers[un]; ok {
@@ -81,9 +81,9 @@ func signup(w http.ResponseWriter, req *http.Request) {
 		dbUsers[un] = u
 
 		// redirect
-		http.Redirect(w, req, "/", http.StatusSeeOther)
+		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
 
-	tpl.ExecuteTemplate(w, "signup.gohtml", nil)
+	tpl.ExecuteTemplate(w, "signup.html", nil)
 }
