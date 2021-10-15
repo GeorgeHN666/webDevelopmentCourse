@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAR</title>
+    <style>
+        html{
+            background-color: rgb(26, 25, 25);
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: rgb(196, 201, 247);
+            font-size: medium;
+        }
+        .cont{
+            background-color: rgb(54, 9, 255);
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="cont">
+        {{if .Last}}
+        <h1>Welcome {{.First}} {{.Last}} Were Glad To See You Again !! </h1><br>
+        <h2>What Would You Like??</h2><br>
+        {{end}}
+
+        <h1>Check Out You Information!!</h1><br>
+        {{if .First}}
+        <h3>First Name: {{.First}}</h3><br>
+        <h3>Last Name: {{.Last}}</h3><br>
+        <h3>UserName: {{.UserName}}</h3><br>
+        <h3>Email: {{.Email}}</h3><br>
+        <h3>Password: {{.Password}}</h3><br>
+        <h3>Rol: {{.Role}}</h3><br>
+        {{end}}
+
+
+        <a href="/" style="text-decoration: none; color:rgb(196, 201, 247);">Go Back</a> <br>
+    </div>
+</body>
+</html>

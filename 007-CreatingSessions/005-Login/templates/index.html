@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        html{
+            background-color: rgb(26, 25, 25);
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: rgb(196, 201, 247);
+            font-size: medium;
+        }
+        .cont{
+            background-color: rgb(235, 180, 1);
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+        <div class="cont">
+            {{if .First}}
+            <h1>Hello {{.First}} {{.Last}} </h1><br>
+            {{end}}
+
+            <h1>Hey Check Out Our Bar!!</h1><br>
+            <a href="/bar" style="text-decoration: none; color: rgb(196, 201, 247);">Users Only</a><br>
+
+            <h1>Haven't Sign Up Yet??</h1><br>
+            <a href="/signup" style="text-decoration: none; color: rgb(196, 201, 247);">Sign Up Now!!</a><br>
+
+            <h1>Alredy Sign Up??</h1><br>
+            <a href="/login" style="text-decoration: none; color: rgb(196, 201, 247);">Login!!</a><br>
+        </div>
+</body>
+</html>

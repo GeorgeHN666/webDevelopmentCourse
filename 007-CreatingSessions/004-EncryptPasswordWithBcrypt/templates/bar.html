@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAR</title>
+</head>
+<body>
+    {{if .First}}
+    <h1>Hey {{.First}} Welcome To The Bar What Can I Get For You??</h1><br>
+    {{end}}
+
+    <h1>Your Personal Data</h1><br>
+    {{if .First}}
+    <h2>Email: {{.Email}}</h2><br>
+    <h2>User Name: {{.UserName}} </h2><br>
+    <h2>Password: {{.Password}} </h2><br>
+    <h2>First Name: {{.First}} </h2><br>
+    <h2>Last Name: {{.Last}} </h2><br>
+    {{end}}
+</body>
+</html>

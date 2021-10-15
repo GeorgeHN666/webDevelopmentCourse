@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        html{
+            background-color: black;
+            font-family: 'Times New Roman', Times, serif;
+            color: whitesmoke;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome</h1> <br>
+
+    {{if .First}}
+        <h1>Hey Welcome {{.First}} {{.Last}} </h1><br>
+    {{end}}
+
+    <h2>Hey Check Out Our Bar!!!</h2><br>
+    <a href="/bar">Users ONLY</a>
+
+    <h1>Haven't Sign Up Yet??</h1>
+    <a href="/signup">Sign Up!!</a>
+
+</body>
+</html>
