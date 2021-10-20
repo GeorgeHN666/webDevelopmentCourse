@@ -29,7 +29,7 @@ func index(w http.ResponseWriter, req *http.Request) {
 	c := getCookie(w, req)
 	// process form submission
 	if req.Method == http.MethodPost {
-		mf, fh, err := req.FormFile("nf")
+		mf, fh, err := req.FormFile("upload_files")
 		if err != nil {
 			fmt.Println(err)
 		}

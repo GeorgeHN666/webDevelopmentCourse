@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"html/template"
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -21,49 +22,56 @@ func init() {
 
 func main() {
 	http.HandleFunc("/", index)
-	// add route to serve pictures
 	http.Handle("/public/", http.StripPrefix("/public", http.FileServer(http.Dir("./public"))))
 	http.Handle("/favicon.ico", http.NotFoundHandler())
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8055", nil)
 }
 
-func index(w http.ResponseWriter, req *http.Request) {
-	c := getCookie(w, req)
-	if req.Method == http.MethodPost {
-		mf, fh, err := req.FormFile("upload")
-		if err != nil {
-			fmt.Println(err)
-		}
-		defer mf.Close()
-		// create sha for file name
-		ext := strings.Split(fh.Filename, ".")[1]
-		h := sha1.New()
-		io.Copy(h, mf)
-		fname := fmt.Sprintf("%x", h.Sum(nil)) + "." + ext
-		// create new file
+func index(w http.ResponseWriter, r *http.Request) {
+	// Get The Cookie
+	c := getCookie(w, r)
+
+	// Conditional
+	if r.Method == http.MethodPost {
+		mf, fh, err := r.FormFile("upload_files")
+
+		handleError(err)
+
+		// Creayte Sha For File Name
+		sP := strings.Split(fh.Filename, ".")[1]
+
+		hash := sha1.New()
+
+		io.Copy(hash, mf)
+		fname := fmt.Sprintf("%x", hash.Sum(nil)) + "." + sP
+
+		// Create File
 		wd, err := os.Getwd()
-		if err != nil {
-			fmt.Println(err)
-		}
+
+		handleError(err)
+
 		path := filepath.Join(wd, "public", "pics", fname)
+
 		nf, err := os.Create(path)
-		if err != nil {
-			fmt.Println(err)
-		}
+
+		handleError(err)
+
 		defer nf.Close()
-		// copy
+
+		// Copy
+
 		mf.Seek(0, 0)
 		io.Copy(nf, mf)
-		// add filename to this user's cookie
+
+		// Add File To The User Cookie
 		c = appendValue(w, c, fname)
 	}
 	xs := strings.Split(c.Value, "|")
-	// sliced cookie values to only send over images
 	tpl.ExecuteTemplate(w, "index.html", xs[1:])
 }
 
-func getCookie(w http.ResponseWriter, req *http.Request) *http.Cookie {
-	c, err := req.Cookie("session")
+func getCookie(w http.ResponseWriter, r *http.Request) *http.Cookie {
+	c, err := r.Cookie("session")
 	if err != nil {
 		sID := uuid.NewV4()
 		c = &http.Cookie{
@@ -83,4 +91,10 @@ func appendValue(w http.ResponseWriter, c *http.Cookie, fname string) *http.Cook
 	c.Value = s
 	http.SetCookie(w, c)
 	return c
+}
+
+func handleError(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
 }

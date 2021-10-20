@@ -7,13 +7,13 @@
     <title>Index</title>
 </head>
 <body>
+    <h1>Your Images!!!</h1>
     {{range .}}
-    <h1>Your Cookies</h1>
-    {{.}}
+    <img src="/public/pics/{{.}}" width="400px" height="400px" alt="images">
     {{end}}
 
     <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="upload"><br>
+        <input type="file" name="upload_files"><br>
         <input type="submit">
     </form>
 </body>
