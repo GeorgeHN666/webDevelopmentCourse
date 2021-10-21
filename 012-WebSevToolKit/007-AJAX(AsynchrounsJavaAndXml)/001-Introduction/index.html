@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Make A Request</h1>
+
+    <script>
+        document.querySelector('h1').onclick = makeRequest;
+
+        function makeRequest(url){
+            // Create A XMLHttpRequest
+            var xhr  = new XMLHttpRequest();
+
+            // OPEN THE REQUEST
+            xhr.open('GET','test.html',true);
+
+            // Handle The Response
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200){
+                    alert(xhr.responseText);
+                }
+            };
+            // send the request
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
